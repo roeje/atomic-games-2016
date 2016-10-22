@@ -32,15 +32,27 @@ def main(argv):
         elif opt == "-t":
             timeout = arg
 
-    print "Board is: "
-    print boardString
+    print player
+    if player == "player-one":
+        player = 1
+    else:
+        player = 2
+    # print "Board is: "
+    # print boardString
     print "player is: " + str(player)
-    print "time: " + str(timeout)
+    # print "time: " + str(timeout)
 
     boardconvert = json.loads(boardString)
 
+    newboard = []
+
+    for i in reversed(boardconvert):
+        newboard.append(i)
+    # print "New Board"
+    # print newboard
+
     # game = c4_engine.Game(height, width, 4, boardconvert)
-    game = c4_ai2.AI(1, boardconvert, 1500);
+    game = c4_ai2.AI(player, newboard, 1500);
 
     result = game.scoring()
     # game.place_token(1,2)

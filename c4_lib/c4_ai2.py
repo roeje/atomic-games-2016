@@ -1,4 +1,6 @@
 import numpy as np
+import random as rnd
+
 
 # AI logic class for determining the optimal col selection for a passed state
 
@@ -30,7 +32,7 @@ class AI():
     def possible_moves (self):
         results = []
         for i in range(0, self.width):
-            if self.board[0][i] == 0:
+            if self.board[5][i] == 0:
                 results.append(i)
 
         print results
@@ -142,16 +144,29 @@ class AI():
             if self.winner == self.player2:
                 return i
 
+        for i in valid:
             self.board = self.oldBoard
             self.place_token(self.player, i)
+            self.row_len = 4
             for j in [4,3,2]:
                 self.row_len = j
                 self.check_winner()
+                print self.winner
                 if self.winner == self.player:
-                    return i
-        return 3;
+                    # return i
+                    print "Winner hit"
+                    resultCurrentPlayer.append([i,j])
+        print "Result List"
+        print resultCurrentPlayer
+        currentHight = 0
+        bestMove = -1
+        for i in resultCurrentPlayer:
+            if i[1] > currentHight:
+                bestMove = i[0]
+        if bestMove == -1:
+            bestMove = valid[rnd.randrange(0, len(valid))]
 
-
+        return bestMove
 # if __name__ == '__main__':
 #
 #     neg = Negamax(7, win_score=80)
