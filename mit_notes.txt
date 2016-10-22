@@ -1,0 +1,20 @@
+# Basic stuff to inclide in the AI:
+	1. take winning move
+	2. take an opponents winning move
+	3. Take center square over edges and corners
+	4. Take corners of edges
+	5. Take edges if they are all that's available
+* take middle bottom first
+@def threat - a threat is a square that if taken results in a win
+@def useless threat - a threat that will never be caarried out
+@def odd/evenness - determined by row number
+
+* First player normally gets odd threats, second player normally gets even
+* White is player one, black is player 2
+! white odd, black even, white wins
+! white and black both evens: no column where an odd number of squares can be played, both players get their normal squares, black can eliminate white threat and win
+! white has even threat black has odd threat: draw
+! white and black both have odd threats: usually both don't work 
+
+* important to make sure taking care of one threat doesn't create another one
+
