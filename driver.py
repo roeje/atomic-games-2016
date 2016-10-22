@@ -43,6 +43,7 @@ def main(argv):
     game = c4_ai2.AI(1, boardconvert, 1500);
 
     result = game.scoring()
+    # game.place_token(1,2)
 
     # aiEngine = c4_ai.AI([1, 2], 1, boardconvert)
     # aiEngine.main()
