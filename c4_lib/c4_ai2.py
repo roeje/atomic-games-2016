@@ -1,19 +1,19 @@
-from easyAI import TwoPlayersGame, AI_Player, Negamax
 import numpy as np
 
 # AI logic class for determining the optimal col selection for a passed state
 
-class AI(TwoPlayersGame):
+class AI():
 
-    def __init__ (self, players, player, gameboard):
+    def __init__ (self, player, gameboard, timeout):
 
         self.height = 6
         self.width = 7
         self.row_len = 4
-        self.winner = -1;
+        self.winner = -1
 
         self.board = gameboard
-        self.players = players
+        self.oldBoard = gameboard
+        # self.players = players
         self.nplayer = player
         # print "HI"
 
@@ -43,7 +43,15 @@ class AI(TwoPlayersGame):
             return False
 
     def scoring(self):
-        return -100 if self.lose() else 0
+        vaild = possible_moves()
+        resultCurrentPlayer = []
+        resultCurrentOpp = []
+        for i in valid:
+            self.board = self.oldBoard
+            place_token(player)
+            for i in range[2,3,4]:
+                self.row_len = i
+                    check_winner()
 
 	# Check if board is full
 	def check_full_board (self):
