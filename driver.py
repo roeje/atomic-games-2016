@@ -43,7 +43,7 @@ def main(argv):
     game.print_formated()
 
 
-    aiEngine = c4_ai.AI([1, 2], 1, game)
+    aiEngine = c4_ai.AI([1, 2], 1, boardconvert)
 
     sys.exit(5)
 
