@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-from c4_lib import c4_ai, c4_engine
+from c4_lib import c4_ai, c4_engine, c4_ai2
 import getopt
 import sys
 import re
@@ -39,13 +39,14 @@ def main(argv):
 
     boardconvert = json.loads(boardString)
 
-    game = c4_engine.Game(height, width, 4, boardconvert)
-    game.print_formated()
+    # game = c4_engine.Game(height, width, 4, boardconvert)
+    game = c4_ai2.AI(1, boardconvert, 1500);
 
+    result = game.scoring()
 
-    aiEngine = c4_ai.AI([1, 2], 1, boardconvert)
+    # aiEngine = c4_ai.AI([1, 2], 1, boardconvert)
+    # aiEngine.main()
 
-
-    # sys.exit(5)
+    sys.exit(result)
 
 main(sys.argv)
