@@ -10,48 +10,70 @@ class AI():
         self.width = 7
         self.row_len = 4
         self.winner = -1
+        self.player = player
+
+        if self.player == 1:
+            self.player2 = 2
+        else:
+            self.player2 = 1
 
         self.board = gameboard
         self.oldBoard = gameboard
         # self.players = players
-        self.nplayer = player
+        # self.nplayer = player
         # print "HI"
 
-        print self.players
-        print "Nplayer: " + str(self.nplayer)
+        # print self.players
+        # print "Nplayer: " + str(self.nplayer)
 
 
     def possible_moves(self):
         results = []
-        for i in range(self.width):
+        for i in range(0, self.width):
             if self.board[0][i] == 0:
-                results.extend(i)
+                results.append(i)
+
+        print results
         return results
 
-    def make_move(self, move):
-        row = np.argmin(board[:, move] != 0)
-        board[row][move] = nplayer
-
-    def is_over(self):
-        return (self.board.min() > 0) or self.lose();
-
-    def lose():
-        check_winner()
-        if self.winner == self.nopponent:
-            return True
-        else:
-            return False
+    # def make_move(self, move):
+    #     row = np.argmin(board[:, move] != 0)
+    #     board[row][move] = nplayer
+    #
+    # def is_over(self):
+    #     return (self.board.min() > 0) or self.lose();
+    #
+    # def lose():
+    #     check_winner()
+    #     if self.winner == self.nopponent:
+    #         return True
+    #     else:
+    #         return False
 
     def scoring(self):
-        vaild = possible_moves()
+        valid = []
+
+        vaild = self.possible_moves()
         resultCurrentPlayer = []
         resultCurrentOpp = []
         for i in valid:
             self.board = self.oldBoard
+            place_token(player2)
+            self.row_len = 4
+            check_winner()
+            if self.winner == player2:
+                return i
+
+            self.board = self.oldBoard
             place_token(player)
-            for i in range[2,3,4]:
-                self.row_len = i
-                    check_winner()
+            for j in [4,3,2]:
+                self.row_len = j
+                check_winner()
+                if self.winner == player:
+                    return i
+        return 3;
+
+
 
 	# Check if board is full
 	def check_full_board (self):
@@ -146,7 +168,7 @@ class AI():
 			return -5
 		return -1
 
-if __name__ == '__main__':
-
-    neg = Negamax(7, win_score=80)
-    game = ConnectFour()
+# if __name__ == '__main__':
+#
+#     neg = Negamax(7, win_score=80)
+#     game = ConnectFour()
