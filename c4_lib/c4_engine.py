@@ -1,15 +1,22 @@
 
+import json
+
 # Class that contains all data related to game.
 class Game:
 
-	def __init__ ( self, height, width, row_len ):
+	def __init__ ( self, height, width, row_len, boardconvert ):
 		self.height = height
 		self.width = width
 		self.row_len = row_len
 
 		# lambda function used to generate the game board
-		b = lambda h, w: [[-1] * w for i in range(h)]
-		self.board = b(height, width)
+		# boardconvert = json.loads(boardString)
+		# print boardconvert
+		# print type(boardconvert)
+
+		# b = lambda h, w: [[-1] * w for i in range(h)]
+		# self.board = b(height, width)
+		self.board = boardconvert
 		self.winner = -1
 
 	# Custom print fuction. I chose not to override the default __str__
@@ -27,6 +34,8 @@ class Game:
 			print "|"
 
 		print "--------------------------------------------"
+
+
 
 	# Check if board is full
 	def check_full_board (self):
