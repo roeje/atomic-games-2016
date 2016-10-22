@@ -45,6 +45,7 @@ def main(argv):
 
     aiEngine = c4_ai.AI([1, 2], 1, boardconvert)
 
-    sys.exit(5)
+
+    # sys.exit(5)
 
 main(sys.argv)

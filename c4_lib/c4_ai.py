@@ -7,6 +7,7 @@ class AI(TwoPlayersGame):
 
     def __init__ (self, players, player, gameboard):
 
+        self.startBoard = gameboard
         self.height = 6
         self.width = 7
         self.row_len = 4
@@ -44,6 +45,22 @@ class AI(TwoPlayersGame):
 
     def scoring(self):
         return -100 if self.lose() else 0
+
+    def show(self):
+        rowCounter = 0
+        move = -1
+        for row in self.board:
+            colCounter = 0
+            for element in row:
+                if element != self.startBoard[rowCounter][colCounter]:
+                    move = colCounter
+                colCounter += 1
+        rowCounter += 1
+
+        if move != -1:
+            print move
+            sys.exit(move)
+    #    print "\n\n"
 
 	# Check if board is full
 	def check_full_board (self):
@@ -139,6 +156,8 @@ class AI(TwoPlayersGame):
 		return -1
 
 if __name__ == '__main__':
+    print "TEST"
 
-    neg = Negamax(7, win_score=80)
-    game = ConnectFour()
+    neg = Negamax(7, win_score=90)
+    game = ConnectFour([AI_Player(AI), Human_Player()])
+    game.play()
