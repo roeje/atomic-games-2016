@@ -4,6 +4,7 @@ from c4_lib import c4_ai, c4_engine
 import getopt
 import sys
 import re
+import json
 
 
 def main(argv):
@@ -16,21 +17,33 @@ def main(argv):
 
     try:
 		# h = height, w = width, r = length to win, l is flag for automatic load
-	    opts, args = getopt.getopt(argv, "b:p:t")
+        opts, args = getopt.getopt(argv[1:], "b:p:t")
+        print opts
+        print args
     except getopt.GetoptError:
 	    # print "Parameters were missing. Please provide: -h height, -w width, -r row length. Add -l if you would like to load a saved game"
         sys.exit(2)
     for opt, arg in opts:
         if opt == '-b':
+
             boardString = arg
         elif opt == "-p":
             player = arg
         elif opt == "-t":
             timeout = arg
 
-    print "Board is: " + boardString
+    print "Board is: "
+    print boardString
     print "player is: " + str(player)
     print "time: " + str(timeout)
+
+    boardconvert = json.loads(boardString)
+
+    game = c4_engine.Game(height, width, 4, boardconvert)
+    game.print_formated()
+
+
+    aiEngine = c4_ai.AI([1, 2], 1, game)
 
     sys.exit(5)
 
